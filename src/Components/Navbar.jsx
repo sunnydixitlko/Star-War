@@ -10,7 +10,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 
 const pages = ['People'];
@@ -18,6 +18,7 @@ const pages = ['People'];
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
+  const navigate = useNavigate();
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -81,7 +82,7 @@ function Navbar() {
               }}
             >
               {pages.map((page, index) => (
-                <MenuItem onClick={handleCloseNavMenu} key={index}>
+                <MenuItem onClick={() => {handleCloseNavMenu(); navigate("/people") }} key={index}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
